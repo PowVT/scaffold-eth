@@ -1,7 +1,7 @@
 /* eslint no-use-before-define: "warn" */
 const fs = require("fs");
 const chalk = require("chalk");
-const { config, ethers, tenderly, run } = require("hardhat");
+const { config, ethers, tenderly, run, network } = require("hardhat");
 const { utils } = require("ethers");
 const R = require("ramda");
 
@@ -82,13 +82,32 @@ const main = async () => {
   */
 
   // If you want to verify your contract on etherscan
-  /*
-  console.log(chalk.blue('verifying on etherscan'))
-  await run("verify:verify", {
-    address: yourContract.address,
-    // constructorArguments: args // If your contract has constructor arguments, you can pass them as an array
-  })
-  */
+  if(network.name !== "localhost") {
+    console.log(chalk.blue('verifying on etherscan'))
+    await run("verify:verify", {
+      address: paradice.address,
+      constructorArguments: [roll1.address, roll2.address, roll3.address, roll4.address, roll5.address, roll6.address] // If your contract has constructor arguments, you can pass them as an array
+    })
+    await run("verify:verify", {
+      address: roll1.address,
+    })
+    await run("verify:verify", {
+      address: roll2.address,
+    })
+    await run("verify:verify", {
+      address: roll3.address,
+    })
+    await run("verify:verify", {
+      address: roll4.address,
+    })
+    await run("verify:verify", {
+      address: roll5.address,
+    })
+    await run("verify:verify", {
+      address: roll6.address,
+    })
+  }
+  
 
   console.log(
     " 💾  Artifacts (address, abi, and args) saved to: ",

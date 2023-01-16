@@ -4,6 +4,17 @@ pragma solidity >=0.6.0 <0.7.0;
 
 import "../library/SVGUtils.sol";
 
+/**
+ * @title Roll6
+ * 
+ * @author @life_of_pandaa
+ * @author @pow_vt
+ * 
+ * @notice This contract is used to render svg code for a dice roll of 6.
+ * 
+ * @dev The die is rendered as six white dots with a pink filter.
+ */
+
 contract Roll6 {
 
     function renderDots(uint8 startIndex, uint8 filterStartId) internal pure returns(string memory) {
