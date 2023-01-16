@@ -4,7 +4,7 @@ const chalk = require("chalk");
 
 require("@nomiclabs/hardhat-waffle");
 require("@tenderly/hardhat-tenderly")
-
+require('hardhat-contract-sizer');
 require("@nomiclabs/hardhat-etherscan");
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
@@ -45,7 +45,7 @@ module.exports = {
   networks: {
     localhost: {
       url: "http://localhost:8545",
-      //gasPrice: 125000000000,//you can adjust gasPrice locally to see how much it will cost on production
+      //gasPrice: 50000000000000000,//you can adjust gasPrice locally to see how much it will cost on production
       /*
         notice no mnemonic here? it will just use account 0 of the hardhat node to deploy
         (you can put in a mnemonic here to set the deployer locally)
@@ -99,6 +99,15 @@ module.exports = {
   },
   solidity: {
     compilers: [
+      {
+        version: "0.8.15",
+        settings: {
+          optimizer: {
+            enabled: false,
+            runs: 200
+          },
+        }
+      },
       {
         version: "0.7.6",
         settings: {

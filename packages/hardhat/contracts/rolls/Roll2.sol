@@ -1,0 +1,95 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.6.0 <0.7.0;
+
+import "../library/SVGUtils.sol";
+
+contract Roll2 {
+
+    function renderDots(uint8 startIndex, uint8 filterStartId) internal pure returns(string memory) {
+        return string(abi.encodePacked(
+            '<g filter="url(#id',SVGUtils.uint2str(filterStartId),')">',
+                '<circle cx="',SVGUtils.uint2str(167 + (startIndex * 333) - 70),'" cy="1070" r="10.039" fill="#fff"/>',
+            '</g>',
+            '<g filter="url(#id',SVGUtils.uint2str(filterStartId),')">',
+                '<circle cx="',SVGUtils.uint2str(167 + (startIndex * 333) + 70),'" cy="930" r="10.039" fill="#fff"/>',
+            '</g>'
+        ));
+    }
+
+    function renderFilters(uint8 startIndex, uint8 filterStartId) internal pure returns(string memory) {
+        return string(abi.encodePacked(
+            '<defs>',
+                '<filter id="id',SVGUtils.uint2str(filterStartId),'" x="',SVGUtils.uint2str(1 + (startIndex * 333)),'" y="140.461" width="333.333" height="2000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">',
+                    '<feFlood flood-opacity="0" result="BackgroundImageFix"/>',
+                    '<feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>',
+                    '<feMorphology radius="51" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_410_34"/>',
+                    '<feOffset/>',
+                    '<feGaussianBlur stdDeviation="70"/>',
+                    '<feComposite in2="hardAlpha" operator="out"/>',
+                    '<feColorMatrix values="0 0 0 0 0.372549 0 0 0 0 0.176471 0 0 0 0 0 0 0 0 0.6 0"/>',
+                    '<feBlend in2="BackgroundImageFix" result="effect1_dropShadow_410_34"/>',
+                    '<feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>',
+                    '<feMorphology radius="11" operator="dilate" in="SourceAlpha" result="effect2_dropShadow_410_34"/>',
+                    '<feOffset/>',
+                    '<feGaussianBlur stdDeviation="25"/>',
+                    '<feComposite in2="hardAlpha" operator="out"/>',
+                    ' <feColorMatrix values="0 0 0 0 0.898039 0 0 0 0 0.431373 0 0 0 0 0 0 0 0 0.8 0"/>',
+                    '<feBlend in2="effect1_dropShadow_410_34" result="effect2_dropShadow_410_34"/>',
+                    '<feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>',
+                    '<feMorphology radius="8" operator="dilate" in="SourceAlpha" result="effect3_dropShadow_410_34"/>',
+                    '<feOffset/>',
+                    '<feGaussianBlur stdDeviation="10"/>',
+                    '<feComposite in2="hardAlpha" operator="out"/>',
+                    '<feColorMatrix values="0 0 0 0 0.898039 0 0 0 0 0.431373 0 0 0 0 0 0 0 0 1 0"/>',
+                    '<feBlend in2="effect2_dropShadow_410_34" result="effect3_dropShadow_410_34"/>',
+                    '<feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>',
+                    '<feMorphology radius="2" operator="dilate" in="SourceAlpha" result="effect4_dropShadow_410_34"/>',
+                    '<feOffset/>',
+                    '<feGaussianBlur stdDeviation="2.5"/>',
+                    '<feComposite in2="hardAlpha" operator="out"/>',
+                    '<feColorMatrix values="0 0 0 0 0.898039 0 0 0 0 0.431373 0 0 0 0 0 0 0 0 1 0"/>',
+                    '<feBlend in2="effect3_dropShadow_410_34" result="effect4_dropShadow_410_34"/>',
+                    '<feBlend in="SourceGraphic" in2="effect4_dropShadow_410_34" result="shape"/>',
+                '</filter>',
+                    '<filter id="id',SVGUtils.uint2str(filterStartId),'" x="',SVGUtils.uint2str(1 + (startIndex * 333)),'" y=".461" width="333.333" height="2000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">',
+                    '<feFlood flood-opacity="0" result="BackgroundImageFix"/>',
+                    '<feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>',
+                    '<feMorphology radius="51" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_410_34"/>',
+                    '<feOffset/>',
+                    '<feGaussianBlur stdDeviation="70"/>',
+                    '<feComposite in2="hardAlpha" operator="out"/>',
+                    '<feColorMatrix values="0 0 0 0 0.372549 0 0 0 0 0.176471 0 0 0 0 0 0 0 0 0.6 0"/>',
+                    '<feBlend in2="BackgroundImageFix" result="effect1_dropShadow_410_34"/>',
+                    '<feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>',
+                    '<feMorphology radius="11" operator="dilate" in="SourceAlpha" result="effect2_dropShadow_410_34"/>',
+                    '<feOffset/><feGaussianBlur stdDeviation="25"/><feComposite in2="hardAlpha" operator="out"/>',
+                    '<feColorMatrix values="0 0 0 0 0.898039 0 0 0 0 0.431373 0 0 0 0 0 0 0 0 0.8 0"/>',
+                    '<feBlend in2="effect1_dropShadow_410_34" result="effect2_dropShadow_410_34"/>',
+                    '<feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>',
+                    '<feMorphology radius="8" operator="dilate" in="SourceAlpha" result="effect3_dropShadow_410_34"/>',
+                    '<feOffset/>',
+                    '<feGaussianBlur stdDeviation="10"/>',
+                    '<feComposite in2="hardAlpha" operator="out"/>',
+                    '<feColorMatrix values="0 0 0 0 0.898039 0 0 0 0 0.431373 0 0 0 0 0 0 0 0 1 0"/>',
+                    '<feBlend in2="effect2_dropShadow_410_34" result="effect3_dropShadow_410_34"/>',
+                    '<feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>',
+                    '<feMorphology radius="2" operator="dilate" in="SourceAlpha" result="effect4_dropShadow_410_34"/>',
+                    '<feOffset/>',
+                    '<feGaussianBlur stdDeviation="2.5"/>',
+                    '<feComposite in2="hardAlpha" operator="out"/>',
+                    '<feColorMatrix values="0 0 0 0 0.898039 0 0 0 0 0.431373 0 0 0 0 0 0 0 0 1 0"/>',
+                    '<feBlend in2="effect3_dropShadow_410_34" result="effect4_dropShadow_410_34"/>',
+                    '<feBlend in="SourceGraphic" in2="effect4_dropShadow_410_34" result="shape"/>',
+                '</filter>',
+            '</defs>'
+        ));
+    }
+
+    function renderRoll2(uint8 startIndex, uint8 filterStartId) public pure returns(string memory) {
+        return string(abi.encodePacked(
+            renderDots(startIndex, filterStartId),
+            renderFilters(startIndex, filterStartId)
+        ));
+    }
+}

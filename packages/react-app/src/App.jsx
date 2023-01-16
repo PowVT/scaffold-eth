@@ -85,7 +85,7 @@ if (DEBUG) console.log("📡 Connecting to Mainnet Ethereum");
 //
 // attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
 // Using StaticJsonRpcProvider as the chainId won't change see https://github.com/ethers-io/ethers.js/issues/901
-const scaffoldEthProvider = new StaticJsonRpcProvider("https://rpc.scaffoldeth.io:48544");
+const scaffoldEthProvider = new StaticJsonRpcProvider("https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406");
 const mainnetInfura = new StaticJsonRpcProvider("https://mainnet.infura.io/v3/" + INFURA_ID);
 // ( ⚠️ Getting "failed to meet quorum" errors? Check your INFURA_I
 
@@ -179,15 +179,15 @@ function App(props) {
   ]);*/
 
   // keep track of a variable from the contract in the local React state:
-  const balance = useContractReader(readContracts, "YourCollectible", "balanceOf", [address]);
+  const balance = useContractReader(readContracts, "Paradice", "balanceOf", [address]);
   console.log("🤗 balance:", balance);
 
   // 📟 Listen for broadcast events
-  const transferEvents = useEventListener(readContracts, "YourCollectible", "Transfer", localProvider, 1);
+  const transferEvents = useEventListener(readContracts, "Paradice", "Transfer", localProvider, 1);
   console.log("📟 Transfer events:", transferEvents);
 
   //
-  // 🧠 This effect will update yourCollectibles by polling when your balance changes
+  // 🧠 This effect will update Paradice by polling when your balance changes
   //
   const yourBalance = balance && balance.toNumber && balance.toNumber();
   const [yourCollectibles, setYourCollectibles] = useState();
@@ -197,11 +197,11 @@ function App(props) {
       const collectibleUpdate = [];
       for (let tokenIndex = 0; tokenIndex < balance; tokenIndex++) {
         try {
-          console.log("GEtting token index", tokenIndex);
-          const tokenId = await readContracts.YourCollectible.tokenOfOwnerByIndex(address, tokenIndex);
+          console.log("Getting token index", tokenIndex);
+          const tokenId = await readContracts.Paradice.tokenOfOwnerByIndex(address, tokenIndex, { gasLimit: 1000000000 });
           console.log("tokenId", tokenId);
-          const tokenURI = await readContracts.YourCollectible.tokenURI(tokenId);
-          const jsonManifestString = atob(tokenURI.substring(29))
+          const tokenURI = await readContracts.Paradice.tokenURI(tokenId, { gasLimit: 1000000000 });
+          const jsonManifestString = window.atob(tokenURI.substring(29))
           console.log("jsonManifestString", jsonManifestString);
 /*
           const ipfsHash = tokenURI.replace("https://ipfs.io/ipfs/", "");
@@ -406,7 +406,7 @@ function App(props) {
               }}
               to="/"
             >
-              Your Loogies
+              Your Rolls
             </Link>
           </Menu.Item>
           <Menu.Item key="/debug">
@@ -432,7 +432,7 @@ function App(props) {
             <div style={{ maxWidth: 820, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
               {isSigner?(
                 <Button type={"primary"} onClick={()=>{
-                  tx( writeContracts.YourCollectible.mintItem() )
+                  tx( writeContracts.Paradice.mintItem() )
                 }}>MINT</Button>
               ):(
                 <Button type={"primary"} onClick={loadWeb3Modal}>CONNECT WALLET</Button>
@@ -445,10 +445,8 @@ function App(props) {
                 bordered
                 dataSource={yourCollectibles}
                 renderItem={item => {
+                  console.log(item)
                   const id = item.id.toNumber();
-
-                  console.log("IMAGE",item.image)
-
                   return (
                     <List.Item key={id + "_" + item.uri + "_" + item.owner}>
                       <Card
@@ -458,8 +456,8 @@ function App(props) {
                           </div>
                         }
                       >
-                        <a href={"https://opensea.io/assets/"+(readContracts && readContracts.YourCollectible && readContracts.YourCollectible.address)+"/"+item.id} target="_blank">
-                        <img src={item.image} />
+                        <a href={item.image} target="_blank">
+                        <img src={item.image} width="500px"/>
                         </a>
                         <div>{item.description}</div>
                       </Card>
@@ -485,7 +483,7 @@ function App(props) {
                         <Button
                           onClick={() => {
                             console.log("writeContracts", writeContracts);
-                            tx(writeContracts.YourCollectible.transferFrom(address, transferToAddresses[id], id));
+                            tx(writeContracts.Paradice.transferFrom(address, transferToAddresses[id], id));
                           }}
                         >
                           Transfer
@@ -500,18 +498,16 @@ function App(props) {
 
               🛠 built with <a href="https://github.com/austintgriffith/scaffold-eth" target="_blank">🏗 scaffold-eth</a>
 
-              🍴 <a href="https://github.com/austintgriffith/scaffold-eth" target="_blank">Fork this repo</a> and build a cool SVG NFT!
-
             </div>
           </Route>
           <Route path="/debug">
 
             <div style={{padding:32}}>
-              <Address value={readContracts && readContracts.YourCollectible && readContracts.YourCollectible.address} />
+              <Address value={readContracts && readContracts.Paradice && readContracts.Paradice.address} />
             </div>
 
             <Contract
-              name="YourCollectible"
+              name="Paradice"
               signer={userProvider.getSigner()}
               provider={localProvider}
               address={address}

@@ -22,11 +22,24 @@ const main = async () => {
   console.log(" \n")*/
 
   // deploy the contract with all the artworks forSale
-  const yourCollectible = await deploy("YourCollectible"/*,[ bytes32Array ]*/) // <-- add in constructor args like line 19 vvvv
+  const roll1 = await deploy("Roll1");
+  const roll2 = await deploy("Roll2");
+  const roll3 = await deploy("Roll3");
+  const roll4 = await deploy("Roll4");
+  const roll5 = await deploy("Roll5");
+  const roll6 = await deploy("Roll6");
 
-  yourCollectible.transferOwnership("0x34aA3F359A9D614239015126635CE7732c18fDF3") //austingriffith.eth
+  const paradice = await deploy("Paradice",[roll1.address, roll2.address, roll3.address, roll4.address, roll5.address, roll6.address]);
 
-  //const yourContract = await ethers.getContractAt('YourContract', "0xaAC799eC2d00C013f1F11c37E654e59B0429DF6A") //<-- if you want to instantiate a version of a contract at a specific address!
+  // // mint 
+  // await paradice.mintItem()
+
+  // let uri = await paradice.tokenURI(1)
+  // console.log(uri)
+
+  // const paradiceSingle = await deploy("ParadiceSingle",);
+
+  //const yourContract = await ethers.getContractAt('YourContract', "0xaAC799eC2d00C013f1F11c37E654e59B0429DF6A")
   //const secondContract = await deploy("SecondContract")
 
   // const exampleToken = await deploy("ExampleToken")
