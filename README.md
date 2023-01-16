@@ -1,12 +1,12 @@
-# 🏗 scaffold-eth - 🔵 Loogies SVG NFT
+# 🏗 scaffold-eth - 🎲 Paradice
 
 
 ```bash
-git clone https://github.com/austintgriffith/scaffold-eth.git loogies-svg-nft
+git clone https://github.com/austintgriffith/scaffold-eth.git paradice-svg-nft
 
-cd loogies-svg-nft
+cd paradice-svg-nft
 
-git checkout loogies-svg-nft
+git checkout paradice-svg-nft
 ```
 
 ```bash
@@ -24,7 +24,7 @@ yarn start
 > in a second terminal window:
 
 ```bash
-cd loogies-svg-nft
+cd paradice-svg-nft
 
 yarn chain
 
@@ -36,7 +36,7 @@ yarn chain
 
 
 ```bash
-cd loogies-svg-nft
+cd paradice-svg-nft
 
 yarn deploy
 
