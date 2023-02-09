@@ -82,31 +82,38 @@ const main = async () => {
   */
 
   // If you want to verify your contract on etherscan
-  if(network.name !== "localhost") {
-    console.log(chalk.blue('verifying on etherscan'))
-    await run("verify:verify", {
-      address: paradice.address,
-      constructorArguments: [roll1.address, roll2.address, roll3.address, roll4.address, roll5.address, roll6.address] // If your contract has constructor arguments, you can pass them as an array
-    })
-    await run("verify:verify", {
-      address: roll1.address,
-    })
-    await run("verify:verify", {
-      address: roll2.address,
-    })
-    await run("verify:verify", {
-      address: roll3.address,
-    })
-    await run("verify:verify", {
-      address: roll4.address,
-    })
-    await run("verify:verify", {
-      address: roll5.address,
-    })
-    await run("verify:verify", {
-      address: roll6.address,
-    })
-  }
+  // const roll1 = await ethers.getContractAt('Roll1', "0xdCf5821BC13e8C847a93630483a16bD7b0109821");
+  // const roll2 = await ethers.getContractAt('Roll2', "0x3Adc6412bE4B6692CBBEc6b08448b4c3E7De7E11");
+  // const roll3 = await ethers.getContractAt('Roll3', "0x6D03be5CB5f74F2F9596f78a526AF869Df3B39be");
+  // const roll4 = await ethers.getContractAt('Roll4', "0x5cEc24C6BBcF610fE607DB776452eA892B3Fe249");
+  // const roll5 = await ethers.getContractAt('Roll5', "0x8A1a996cd63DD98c16030076f0B27F2926A35cB9");
+  // const roll6 = await ethers.getContractAt('Roll6', "0x99F4eeEd02d54eC98Aa3f339C51ba3829FaA0475");
+  // const paradice = await ethers.getContractAt('Paradice', "0x05456A7450CBf97C05c8e8D64E78F39cc4477b42");
+  // if(network.name !== "localhost") {
+  //   console.log(chalk.blue('verifying on etherscan'))
+  //   await run("verify:verify", {
+  //     address: paradice.address,
+  //     constructorArguments: [roll1.address, roll2.address, roll3.address, roll4.address, roll5.address, roll6.address] // If your contract has constructor arguments, you can pass them as an array
+  //   })
+  //   await run("verify:verify", {
+  //     address: roll1.address,
+  //   })
+  //   await run("verify:verify", {
+  //     address: roll2.address,
+  //   })
+  //   await run("verify:verify", {
+  //     address: roll3.address,
+  //   })
+  //   await run("verify:verify", {
+  //     address: roll4.address,
+  //   })
+  //   await run("verify:verify", {
+  //     address: roll5.address,
+  //   })
+  //   await run("verify:verify", {
+  //     address: roll6.address,
+  //   })
+  // }
   
 
   console.log(
