@@ -287,7 +287,7 @@ function App(props) {
             */}
 
           <Contract
-            name="YourContract"
+            name="ERC20Airdrop"
             price={price}
             signer={userSigner}
             provider={localProvider}
